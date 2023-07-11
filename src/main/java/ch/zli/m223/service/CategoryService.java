@@ -15,7 +15,7 @@ public class CategoryService {
     private EntityManager entityManager;
 
     @Transactional
-    public Category createTag(Category category) {
+    public Category createCategory(Category category) {
         entityManager.persist(category);
         return category;
     }

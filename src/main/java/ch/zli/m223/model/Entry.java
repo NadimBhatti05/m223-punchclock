@@ -4,6 +4,9 @@ import javax.persistence.*;
 
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
+import java.util.List;
+
+import ch.zli.m223.model.Category;
 import java.time.LocalDateTime;
 
 @Entity
@@ -12,6 +15,13 @@ public class Entry {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Schema(readOnly = true)
   private Long id;
+
+  @ManyToOne
+  private Category category;
+
+
+  @ManyToMany
+  private List<Tag> tags;
 
   @Column(nullable = false)
   private LocalDateTime checkIn;
@@ -38,8 +48,25 @@ public class Entry {
   public LocalDateTime getCheckOut() {
     return checkOut;
   }
+  
 
   public void setCheckOut(LocalDateTime checkOut) {
     this.checkOut = checkOut;
+  }
+
+  public Category getCategory() {
+    return category;
+  }
+
+  public void setCategory(Category category) {
+    this.category = category;
+  }
+
+  public List<Tag> getTag() {
+    return tags;
+  }
+
+  public void setTag(List<Tag> tag) {
+    this.tags = tags;
   }
 }
